@@ -41,11 +41,11 @@
                     ]
                 },
                 "outputData": {
-                    "ctx.user": "{{dataParseDefinitions:updateUserCtx}}"
+                    "ctx.user": "{{dataParseDefinitions:updateUserCtxForHomeFolder}}"
                 },
                 "events": {
                     "success": [{
-                        "name": "showHomeFolder"
+                        "name": "showHomeFolderLink"
                     }]
                 }
             },
@@ -69,7 +69,7 @@
             ]
         },
         "dataParseDefinitions": {
-            "updateUserCtx": {
+            "updateUserCtxForHomeFolder": {
                 "outputFormatType": "ViewModelObject",
                 "dataInput": "plain[0]",
                 "operationType": "CREATE"
