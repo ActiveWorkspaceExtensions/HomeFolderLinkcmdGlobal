@@ -1,0 +1,79 @@
+{
+    "name": "HomeFolderLinkcmdGlobal",
+    "desc": "Global link for Home Folder",
+    "type": [
+        "native"
+    ],
+    "skipTest": true,
+    "commandsViewModel": {
+        "commands": {
+            "HomeFolderLinkcmdGlobal": {
+                "iconId": "homeHomeFolder",
+                "title": "{{i18n.HomeFolderLinkcmdGlobalTitle}}"
+            }
+        },
+        "commandHandlers": {
+            "HomeFolderLinkcmdGlobalHandler": {
+                "id": "HomeFolderLinkcmdGlobal",
+                "action": "activateHomeFolderLinkcmdGlobal",
+                "activeWhen": true,
+                "visibleWhen": true
+            }
+        },
+        "commandPlacements": {
+            "HomeFolderLinkcmdGlobalaw_globalToolbar": {
+                "id": "HomeFolderLinkcmdGlobal",
+                "uiAnchor": "aw_globalToolbar",
+                "priority": 100
+            }
+        },
+        "actions": {
+            "activateHomeFolderLinkcmdGlobal": {
+                "actionType": "JSFunction",
+                "method": "getProperties",
+                "deps": "soa/dataManagementService",
+                "inputData": {
+                    "uids": [
+                        "{{ctx.user.uid}}"
+                    ],
+                    "propNames": [
+                        "home_folder"
+                    ]
+                },
+                "outputData": {
+                    "ctx.user": "{{dataParseDefinitions:updateUserCtx}}"
+                },
+                "events": {
+                    "success": [{
+                        "name": "showHomeFolder"
+                    }]
+                }
+            },
+            "showHomeFolderLink": {
+                "actionType": "JSFunction",
+                "method": "goHomeFolderLink",
+                "deps": "js/HomeFolderLinkcmdGlobalService",
+                "inputData": {
+                    "location": "#/com.siemens.splm.clientfx.tcui.xrt.showObject?s_uid=",
+                    "userUID": "{{ctx.user.props.home_folder.dbValues[0]}}"
+                }
+            }
+        },
+        "onEvent": [{
+            "eventId": "showHomeFolderLink",
+            "action": "showHomeFolderLink"
+        }],
+        "i18n": {
+            "HomeFolderLinkcmdGlobalTitle": [
+                "HomeFolderLinkcmdGlobalMessages"
+            ]
+        },
+        "dataParseDefinitions": {
+            "updateUserCtx": {
+                "outputFormatType": "ViewModelObject",
+                "dataInput": "plain[0]",
+                "operationType": "CREATE"
+            }
+        }
+    }
+}
