@@ -50,12 +50,12 @@
                 }
             },
             "showHomeFolderLink": {
-                "actionType": "JSFunction",
-                "method": "goHomeFolderLink",
-                "deps": "js/HomeFolderLinkcmdGlobalService",
-                "inputData": {
-                    "location": "#/com.siemens.splm.clientfx.tcui.xrt.showObject?s_uid=",
-                    "userUID": "{{ctx.user.props.home_folder.dbValues[0]}}"
+                "actionType": "Navigate",
+                "navigateTo": "com_siemens_splm_clientfx_tcui_xrt_showObject",
+                "navigationParams": {
+                    "uid": "{{ctx.user.props.home_folder.dbValues[0]}}",
+                    "cmdId": "{{commandContext.cmdId}}",
+                    "cmdArg": "{{commandContext.cmdArgs}}"
                 }
             }
         },
